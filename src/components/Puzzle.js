@@ -7,6 +7,7 @@ import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix } from "./helpers";
 import { BOARDWIDTH, DEFAULT_SIZE } from './constants'
 
+
 export default Puzzle = () => {
 
   const [size, setSize] = useState(DEFAULT_SIZE)
