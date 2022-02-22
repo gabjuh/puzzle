@@ -1,0 +1,23 @@
+{
+  "name": "puzzle",
+  "version": "1.0.0",
+  "description": "'Puzzle'",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx parcel src/index.html"
+  },
+  "author": "gabjuh",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-select": "^5.2.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}

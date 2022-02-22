@@ -1,0 +1,20 @@
+table {
+  width: 400px;
+  height: 400px;
+  /* background-color:cadetblue; */
+}
+
+td {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 5px #000;
+  cursor: pointer;
+  vertical-align: middle;
+  border: 1px solid #aaa;
+  background-color:cadetblue;
+
+}
+
+/* td > div > span {
+  display: inline-block;
+} */
