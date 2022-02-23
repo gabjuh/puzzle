@@ -80,8 +80,8 @@ export default Puzzle = () => {
         clickables, 
         matrix, 
         emptyFieldCoords, 
-        setMatrix, //functions
-        setEmptyFieldCoords //functions
+        setMatrix, 
+        setEmptyFieldCoords 
       )
     }) 
   }
@@ -107,8 +107,7 @@ export default Puzzle = () => {
         fn={() => {
           shuffleTiles()
           setIsGameStarted(true)
-          // console.log([...clickables])
-        }} //startGame(size)}
+        }} 
       />
       <Button 
         text={'Reset'}
@@ -116,8 +115,8 @@ export default Puzzle = () => {
       />
       <Select 
         options={levels}
-        defaultValue={3}
-        fn={() => console.log('bla')}
+        defaultValue={size}
+        fn={setSize}
       />
       <h2>{info}</h2>
     </>

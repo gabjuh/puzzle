@@ -1,5 +1,4 @@
 import React from "react";
-import { setSelected } from "./helpers";
 
 const Option = props => {
   const {value, label} = props
@@ -20,14 +19,13 @@ export default Select = props => {
     <>
       <select
         defaultValue={defaultValue}
-        onChange={fn}
+        onChange={() => fn()}
       >
         {options.map(option => (
           <Option 
             key={option.value}
             value={option.value} 
             label={option.label}
-            fn={fn}
           />
         ))}
       </select>
