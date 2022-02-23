@@ -4,7 +4,7 @@ export default Tile = props => {
 
   const tileRef = useRef()
 
-  const {number, tileWidth } = props
+  const {number, tileWidth} = props
 
   return (
     <td

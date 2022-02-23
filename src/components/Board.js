@@ -12,7 +12,7 @@ export default Board = props => {
     emptyFieldCoords,
     setMatrix,
     setEmptyFieldCoords,
-    onClickFn, 
+    // onClickFn, 
     tileWidth} = props
 
   return (
