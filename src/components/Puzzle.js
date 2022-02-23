@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Board from './Board'
 import Button from './Button'
 import Select from './Select'
-import { startGame, resetGame } from './helpers'
 import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix, 
   isGameOver, objToStr } from "./helpers";
@@ -16,17 +15,22 @@ export default Puzzle = () => {
 
   const tileWidth = boardWidth / size
 
+  // ?
   const [emptyFieldCoords, setEmptyFieldCoords] = useState([size - 1, size - 1])
 
+  // ?
   const [clickables, setClickables] = useState([])
 
+  // ?
   const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
 
   useEffect(() => {
     setMatrix(setTileNrsMatrix(size))
   }, [size])
   
-  const [referenzMatrix, setRefenerzMatrix] = useState(matrix)
+  // ?
+  // const [referenzMatrix, setRefenerzMatrix] = useState(matrix)
+  const origMatrix = matrix
 
   const [info, setInfo] = useState('')
 
@@ -55,7 +59,7 @@ export default Puzzle = () => {
   useEffect (() => {
     refreshClickables()
     if (!isGameStarted) return
-    if (isGameOver(objToStr(matrix), objToStr(referenzMatrix))) setInfo(GAME_OVER_TEXT)
+    if (isGameOver(objToStr(matrix), objToStr(origMatrix))) setInfo(GAME_OVER_TEXT)
   }, [matrix])
 
   const [prevShuffledTileValue, setPrevShuffledTileValue] = useState(0)
@@ -111,7 +115,10 @@ export default Puzzle = () => {
       />
       <Button 
         text={'Reset'}
-        fn={() => resetGame()}
+        fn={() => {
+          // setMatrix(origMatrix)          
+          console.log(origMatrix)
+        }}
       />
       <Select 
         options={levels}

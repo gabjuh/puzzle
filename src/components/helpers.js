@@ -13,10 +13,6 @@ export const clicked = (val, i, j, clickables, matrix,
   })
 }
 
-export const resetGame = () => {
-  console.log('reset game')
-}
-
 export const isUndefined = (coords, size) => {
   const [x, y] = coords
   if (x >= 0 && x < size && y >= 0 && y < size) return coords
