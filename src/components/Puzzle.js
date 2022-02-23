@@ -7,7 +7,6 @@ import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix } from "./helpers";
 import { BOARDWIDTH, DEFAULT_SIZE } from './constants'
 
-
 export default Puzzle = () => {
 
   const [size, setSize] = useState(DEFAULT_SIZE)
@@ -64,13 +63,11 @@ export default Puzzle = () => {
   }
 
   const shuffleTiles = () => {
-    [...Array(1)].forEach((_, i) => {
+    [...Array(1)].forEach(() => {
 
       const [x, y] = getOtherRandomTile() 
       const value = matrix[x][y]
       setPrevShuffledTileValue(value)
-      
-      // console.log(i)
 
       clicked(
         value,
@@ -78,8 +75,8 @@ export default Puzzle = () => {
         clickables, 
         matrix, 
         emptyFieldCoords, 
-        setMatrix, 
-        setEmptyFieldCoords
+        setMatrix, //functions
+        setEmptyFieldCoords //functions
       )
     }) 
   }
