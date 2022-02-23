@@ -15,8 +15,10 @@ export default Puzzle = () => {
 
   const tileWidth = boardWidth / size
 
+  const DEFAULT_EMPTY_FIELD_COORDS = [size - 1, size - 1]
+
   // ?
-  const [emptyFieldCoords, setEmptyFieldCoords] = useState([size - 1, size - 1])
+  const [emptyFieldCoords, setEmptyFieldCoords] = useState(DEFAULT_EMPTY_FIELD_COORDS)
 
   // ?
   const [clickables, setClickables] = useState([])
@@ -29,8 +31,7 @@ export default Puzzle = () => {
   }, [size])
   
   // ?
-  // const [referenzMatrix, setRefenerzMatrix] = useState(matrix)
-  const origMatrix = matrix
+  const [matrixCopy, setMatrixCopy] = useState(matrix)
 
   const [info, setInfo] = useState('')
 
@@ -59,7 +60,7 @@ export default Puzzle = () => {
   useEffect (() => {
     refreshClickables()
     if (!isGameStarted) return
-    if (isGameOver(objToStr(matrix), objToStr(origMatrix))) setInfo(GAME_OVER_TEXT)
+    if (isGameOver(objToStr(matrix), objToStr(matrixCopy))) setInfo(GAME_OVER_TEXT)
   }, [matrix])
 
   const [prevShuffledTileValue, setPrevShuffledTileValue] = useState(0)
@@ -116,8 +117,11 @@ export default Puzzle = () => {
       <Button 
         text={'Reset'}
         fn={() => {
-          // setMatrix(origMatrix)          
-          console.log(origMatrix)
+          setMatrix(setTileNrsMatrix(size)) 
+          setEmptyFieldCoords(DEFAULT_EMPTY_FIELD_COORDS)
+          refreshClickables()
+          setIsGameStarted(false)
+          setInfo('')
         }}
       />
       <Select 
