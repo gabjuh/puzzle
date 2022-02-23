@@ -19,7 +19,7 @@ export default Select = props => {
     <>
       <select
         defaultValue={defaultValue}
-        onChange={() => fn()}
+        onChange={e => fn(e.target.value)}
       >
         {options.map(option => (
           <Option 
