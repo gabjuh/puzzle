@@ -22,16 +22,12 @@ export const objToStr = obj => JSON.stringify(obj)
 
 export const isGameOver = (origMatrix, refMatrix) => origMatrix === refMatrix
 
-export const setTileNrsMatrix = (size, shuffledNrsArray, shuffle = false) => {
+export const setTileNrsMatrix = (size) => {
   const matrix = Array.from(new Array(size).fill(0).keys()).map((y, j) => 
     Array.from(new Array(size).fill(0).keys()).map((x, i) => {
       let nr = y * size + x + 1
-      if (shuffle === false) return nr === size ** 2  ? '' : nr
-
-      nr = shuffledNrsArray[nr - 1]
-      return nr
+      return nr === size ** 2  ? '' : nr
     })
   )
-  
   return matrix
 }
