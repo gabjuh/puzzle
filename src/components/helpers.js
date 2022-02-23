@@ -25,6 +25,10 @@ export const isUndefined = (coords, size) => {
   if (x >= 0 && x < size && y >= 0 && y < size) return coords
 }
 
+export const objToStr = obj => JSON.stringify(obj)
+
+export const isGameOver = (origMatrix, refMatrix) => origMatrix === refMatrix
+
 export const setTileNrsMatrix = (size, shuffledNrsArray, shuffle = false) => {
   const matrix = Array.from(new Array(size).fill(0).keys()).map((y, j) => 
     Array.from(new Array(size).fill(0).keys()).map((x, i) => {

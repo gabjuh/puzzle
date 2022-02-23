@@ -4,8 +4,9 @@ import Button from './Button'
 import Select from './Select'
 import { startGame, resetGame } from './helpers'
 import levels from './levels'
-import { clicked, isUndefined, setTileNrsMatrix } from "./helpers";
-import { BOARDWIDTH, DEFAULT_SIZE } from './constants'
+import { clicked, isUndefined, setTileNrsMatrix, 
+  isGameOver, objToStr } from "./helpers";
+import { BOARDWIDTH, DEFAULT_SIZE, GAME_OVER_TEXT } from './constants'
 
 export default Puzzle = () => {
 
@@ -26,6 +27,10 @@ export default Puzzle = () => {
   }, [size])
   
   const [referenzMatrix, setRefenerzMatrix] = useState(matrix)
+
+  const [info, setInfo] = useState('')
+
+  const [isGameStarted, setIsGameStarted] = useState(false)
 
   const refreshClickables = () => {
     let clickablesArray = []
@@ -49,9 +54,9 @@ export default Puzzle = () => {
 
   useEffect (() => {
     refreshClickables()
+    if (!isGameStarted) return
+    if (isGameOver(objToStr(matrix), objToStr(referenzMatrix))) setInfo(GAME_OVER_TEXT)
   }, [matrix])
-
-  
 
   const [prevShuffledTileValue, setPrevShuffledTileValue] = useState(0)
 
@@ -101,6 +106,7 @@ export default Puzzle = () => {
         text={'Start Game'}
         fn={() => {
           shuffleTiles()
+          setIsGameStarted(true)
           // console.log([...clickables])
         }} //startGame(size)}
       />
@@ -113,6 +119,7 @@ export default Puzzle = () => {
         defaultValue={3}
         fn={() => console.log('bla')}
       />
+      <h2>{info}</h2>
     </>
   )
 }
