@@ -115,7 +115,7 @@ export default Puzzle = () => {
           let newMatrix = setTileNrsMatrix(newSize)
           setSize(newSize)
           setMatrix(newMatrix) 
-          setEmptyFieldCoords(DEFAULT_EMPTY_FIELD_COORDS)
+          setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(newMatrix))
           refreshClickables()
           setIsGameStarted(false)
           setMatrixCopy(newMatrix)
