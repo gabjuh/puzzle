@@ -23,6 +23,8 @@ export default Puzzle = () => {
  
   const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
 
+  const [mode, setMode] = useState()
+
   useEffect(() => {
     setMatrix(setTileNrsMatrix(size))
   }, [size])
@@ -92,7 +94,7 @@ export default Puzzle = () => {
           setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(newMatrix))
           refreshClickables()
           setIsGameStarted(true)
-          setInfo('')
+          setInfo('Good Luck! 🧐')
         }} 
       />
       <Button 
@@ -102,7 +104,7 @@ export default Puzzle = () => {
           setEmptyFieldCoords(DEFAULT_EMPTY_FIELD_COORDS)
           refreshClickables()
           setIsGameStarted(false)
-          setInfo('')
+          setInfo('Board Reset 😵😬')
         }}
       />
       <Select 
@@ -117,7 +119,10 @@ export default Puzzle = () => {
           refreshClickables()
           setIsGameStarted(false)
           setMatrixCopy(newMatrix)
-          setInfo('')
+          setInfo(() => {
+            const level = levels.filter(x => x.value === newSize)
+            return level[0].label, level[0].emoji
+          })
         }}
       />
       <h2>{info}</h2>

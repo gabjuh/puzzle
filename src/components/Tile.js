@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 
+
 export default Tile = props => {
 
   const tileRef = useRef()
@@ -11,7 +12,13 @@ export default Tile = props => {
       ref={tileRef}
       key={number}
       onClick={props.clicked}
-      style={{minWidth: tileWidth}}
+      style={{
+        minWidth: tileWidth,
+        width: tileWidth,
+        height: tileWidth,
+
+        // backgroundImage: `url(${bgImage})`
+      }}
     >
       {number}
     </td>

@@ -1,4 +1,15 @@
+body {
+  background-color:darkslategrey;
+  color: #fff;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+h1 {
+  text-align: center;
+}
+
 table {
+  margin: 0 auto;
   width: 400px;
   height: 400px;
   /* background-color:cadetblue; */
@@ -10,11 +21,41 @@ td {
   text-shadow: 0 0 5px #000;
   cursor: pointer;
   vertical-align: middle;
-  border: 1px solid #aaa;
-  background-color:cadetblue;
-
+  border: none;
+  background-color: rgba(114, 136, 136, .4) ;
 }
 
-/* td > div > span {
-  display: inline-block;
-} */
+button, select {
+  display: block;
+  margin: 1rem auto;
+  height: 2.4rem;
+  width: 12rem;
+  padding: 0 1.5rem;
+  background-color: #728888; 
+  border: none;  
+  text-align: left;
+}
+
+button:hover,
+select:hover,
+td:hover {
+  color: rgba(255, 255, 255, 1);  
+  background-color: rgba(114, 136, 136, .7) ;
+}
+
+button, h2, select {
+  border-radius: 5rem;
+  color: rgba(255, 255, 255, .8);  
+  background-color: rgba(114, 136, 136, .5) ;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 1.5rem;
+  max-width: 400px;
+  height: 2.5rem;
+  color: rgba(255, 255, 255, 1);  
+  
+}
+
