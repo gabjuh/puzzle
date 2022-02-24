@@ -31,3 +31,52 @@ export const setTileNrsMatrix = (size) => {
   )
   return matrix
 }
+
+const getRandomNr = (min, max) => Math.floor(Math.random() * (max - min) + min)
+
+
+export const getMixedMatrix = (size) => {
+  let matrix = setTileNrsMatrix(size);
+
+  [...Array(getRandomNr(60, 40))].forEach(() => {
+    const coord = [
+      getRandomNr(size - 1, 0), 
+      getRandomNr(size - 1, 0)
+    ];
+  
+    [...Array(getRandomNr(4, 1))].forEach(() => {
+  
+      // Id-s of the mixing direction
+      // 1  →  2
+      // ↑     ↓
+      // 4  ←  3
+  
+      let one = matrix[coord[0]][coord[1]]
+      let two = matrix[coord[0]][coord[1] + 1]
+      let three = matrix[coord[0] + 1][coord[1] + 1]
+      let four = matrix[coord[0] + 1][coord[1]]
+      
+      let puffer = one
+  
+      matrix[coord[0]][coord[1]]          = two
+      matrix[coord[0]][coord[1] + 1]      = three
+      matrix[coord[0] + 1][coord[1] + 1]  = four
+      matrix[coord[0] + 1][coord[1]]      = puffer
+    })
+  })
+  
+  // console.log(matrix)
+  return matrix
+
+
+}
+
+export const getEmptyFieldCoordsFromMatrix = (matrix) => {
+  let coords = []
+  matrix.forEach((row, x) => {
+    row.forEach((val, y) => {
+      if (val === '') coords = [x, y]
+    })
+  })
+  return coords
+}

@@ -4,7 +4,7 @@ import Button from './Button'
 import Select from './Select'
 import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix, 
-  isGameOver, objToStr } from "./helpers";
+  isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix } from "./helpers";
 import { BOARDWIDTH, DEFAULT_SIZE, GAME_OVER_TEXT } from './constants'
 
 export default Puzzle = () => {
@@ -111,7 +111,11 @@ export default Puzzle = () => {
         text={'Start Game'}
         fn={() => {
           shuffleTiles()
+          // setMatrix(getMixedMatrix(size))
+          setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(matrix))
+          refreshClickables()
           setIsGameStarted(true)
+          setInfo('')
         }} 
       />
       <Button 
