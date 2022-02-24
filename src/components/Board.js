@@ -13,14 +13,16 @@ export default Board = props => {
     setMatrix,
     setEmptyFieldCoords,
     tileWidth,
+    boardWidth,
     bgImage,
-    boardWidth
+    bgPos
   } = props
 
-  let pos = [0, 0]
-  
-  const getBackgroundPosition = (i, j) => 
-    `${pos[0] - tileWidth * j}px ${pos[1] - tileWidth * i}px`
+  // Tricky, because the value was originally an 
+  // empty string, was converted to number but 
+  // without value. After the decrementation we 
+  // have a value to compare with.
+  const isLastPiece = val => val - 1 === -1 ? 'none' : bgImage
 
   return (
     matrix.map((m, i) => (
@@ -39,9 +41,11 @@ export default Board = props => {
                 setMatrix,
                 setEmptyFieldCoords)}
               tileWidth={tileWidth}
-              bgImage={bgImage}
+              bgImage={isLastPiece(val)}
               bgSize={`${boardWidth}px`}
-              bgPosition={getBackgroundPosition(i, j)}
+              bgPos={bgPos[val - 1]}
+              // test={val - 1}
+              // lastPiece={isLastPiece(i, j)}
             />
           )
         })}
@@ -49,101 +53,3 @@ export default Board = props => {
     ))
   )
 }
-
-
-// import bgImage from '../../src/data/red-squirrel.jpg'
-
-
-
-// import React from 'react'
-// import { swapTiles } from './swapTiles'
-
-// export const Tile = props => { 
-
-//   const {nr, bgImage, bgSize, bgPosition, 
-//     tileWidth, fontSize, divRef, emptyField} = props
-  
-//   const showTileNumbers = () => 
-//     props.showNrs === false ? 'none' : 'inline-block'
-
-//   return (
-//     <div data-tile={nr}
-//       style={{
-//         backgroundImage: `url(${bgImage})`,
-//         backgroundSize: bgSize,
-//         backgroundPosition: bgPosition,
-//         width: tileWidth,
-//         height: tileWidth,
-//         fontSize: fontSize,
-//       }}
-//       ref={divRef}
-//       onClick={(event) => swapTiles(event, emptyField)}
-//       >
-//       <span style={{
-//           paddingTop: `${tileWidth / 2 - fontSize / 2}px`,
-//           display: `${showTileNumbers()}`
-//         }}>
-//       {props.nr}
-//       </span>
-//     </div>
-//   )
-// }
-
-
-
-// BOARD
-
-//   const {difficulty, boardWidth, fontSize} = props
-
-//   const tileWidth = boardWidth / difficulty
-//   let key = 0
-//   let pos = [tileWidth, tileWidth]
-
-// !!!!!
-//   const setBackgroundPosition = axis => {
-//     if (axis === 'x') pos[0] = pos[0] - tileWidth
-//     if (axis === 'y') pos[1] = pos[1] - tileWidth
-//   }
-  
-//   const getBackgroundPosition = () => `${pos[0]}px ${pos[1]}px`
-// !!!!!
-
-// TILE
-//       <Tile 
-//         bgImage={props.bgImg}
-//         bgSize={`${boardWidth}px`}
-//         bgPosition={getBackgroundPosition()}
-//         tileWidth={tileWidth}
-//         showNrs={props.showNrs}
-//         nr={key}
-//         fontSize={fontSize}
-//         divRef={ref}
-//         emptyField={emptyField}
-//       />
-
-
-//   return (
-//     <table>
-//       <tbody>
-//         {rows.map(tiles => {
-//           setBackgroundPosition('y')
-//           return ( 
-//           <tr> 
-//             {tiles.map(() => {
-//               key += 1
-//               if (isLastTile(key)) return <td data-id={`${nrOfTiles()}`}></td> //data-key={`${nrOfTiles()}`}
-//               setBackgroundPosition('x')
-//               return (
-//                 <td 
-//                   data-id={key}>
-//                   {getTileBlock(tileRefs.current[key - 1])}
-//                 </td>
-//               )
-//             })}
-//           </tr> )
-//         })}
-//       </tbody>
-//     </table>
-//   )
-  
-// }

@@ -9,8 +9,12 @@ export default Tile = props => {
     tileWidth, 
     bgImage, 
     bgSize, 
-    bgPosition
+    bgPos,
+    // lastPiece, test
   } = props
+
+  // const setNoneIfLastPiece = (cssProp) => lastPiece ? 'none' : cssProp  
+
 
   return (
     <td
@@ -23,7 +27,7 @@ export default Tile = props => {
         height: tileWidth,
         backgroundImage: `url(${bgImage})`,
         backgroundSize: bgSize,
-        backgroundPosition: bgPosition,
+        backgroundPosition: bgPos,
       }}
     >
       {number}

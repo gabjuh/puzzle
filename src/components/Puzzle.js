@@ -4,7 +4,7 @@ import Button from './Button'
 import Select from './Select'
 import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix, 
-  isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix } from "./helpers";
+  isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix, setBgPosInArray } from "./helpers";
 import { BOARDWIDTH, DEFAULT_SIZE, GAME_OVER_TEXT } from './constants'
 import bgImage from '../../src/data/red-squirrel.jpg'
 
@@ -24,7 +24,9 @@ export default Puzzle = () => {
  
   const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
 
-  const [showImageBg, setShowImageBg] = useState(true)
+  const [showNumbers, setShowNumbers] = useState(true)
+
+  const backgroundPositions = setBgPosInArray(matrix, tileWidth)
 
   useEffect(() => {
     setMatrix(setTileNrsMatrix(size))
@@ -87,6 +89,7 @@ export default Puzzle = () => {
             tileWidth={tileWidth}
             boardWidth={boardWidth}
             bgImage={bgImage}
+            bgPos={backgroundPositions}
           />
         </thead>
       </table>

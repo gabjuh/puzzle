@@ -37,8 +37,8 @@ button, select {
 }
 
 button:hover,
-select:hover,
-td:hover {
+/* td:hover, */
+select:hover {
   color: rgba(255, 255, 255, 1);  
   background-color: rgba(114, 136, 136, .7) ;
 }

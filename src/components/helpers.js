@@ -37,7 +37,7 @@ const getRandomNr = (min, max) => Math.floor(Math.random() * (max - min) + min)
 export const getMixedMatrix = (size) => {
   let matrix = setTileNrsMatrix(size);
 
-  [...Array(getRandomNr(60, 40))].forEach(() => {
+  [...Array(getRandomNr(200, 500))].forEach(() => {
     const coord = [
       getRandomNr(size - 1, 0), 
       getRandomNr(size - 1, 0)
@@ -74,4 +74,19 @@ export const getEmptyFieldCoordsFromMatrix = (matrix) => {
     })
   })
   return coords
+}
+
+export const setBgPosInArray = (matrix, tileWidth) => {  
+  let positions = []
+  let coords = [0, 0]
+
+  matrix.forEach((row, i) => {
+    row.forEach((tile, j) => {
+      if (isNaN(tile)) return 
+      positions.push(`${coords[0] - tileWidth * j}px ${coords[1] - tileWidth * i}px`)
+    })
+  })
+  return positions.slice(0, -1)
+  // console.log(positions)
+  return positions
 }
