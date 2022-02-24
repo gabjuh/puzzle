@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Row from './Row'
 import Tile from './Tile'
 import { clicked } from "./helpers";
@@ -12,12 +12,20 @@ export default Board = props => {
     emptyFieldCoords,
     setMatrix,
     setEmptyFieldCoords,
-    tileWidth} = props
+    tileWidth,
+    bgImage,
+    boardWidth
+  } = props
+
+  let pos = [0, 0]
+  
+  const getBackgroundPosition = (i, j) => 
+    `${pos[0] - tileWidth * j}px ${pos[1] - tileWidth * i}px`
 
   return (
     matrix.map((m, i) => (
       <Row key={i}>
-        {m.map((val, j) => {      
+        {m.map((val, j) => {   
           return (
             <Tile 
               key={i * size + j}
@@ -31,6 +39,9 @@ export default Board = props => {
                 setMatrix,
                 setEmptyFieldCoords)}
               tileWidth={tileWidth}
+              bgImage={bgImage}
+              bgSize={`${boardWidth}px`}
+              bgPosition={getBackgroundPosition(i, j)}
             />
           )
         })}

@@ -6,6 +6,7 @@ import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix, 
   isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix } from "./helpers";
 import { BOARDWIDTH, DEFAULT_SIZE, GAME_OVER_TEXT } from './constants'
+import bgImage from '../../src/data/red-squirrel.jpg'
 
 export default Puzzle = () => {
 
@@ -23,7 +24,7 @@ export default Puzzle = () => {
  
   const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
 
-  const [mode, setMode] = useState()
+  const [showImageBg, setShowImageBg] = useState(true)
 
   useEffect(() => {
     setMatrix(setTileNrsMatrix(size))
@@ -81,8 +82,11 @@ export default Puzzle = () => {
             emptyFieldCoords={emptyFieldCoords}
             setMatrix={setMatrix}
             setEmptyFieldCoords={setEmptyFieldCoords}
-            onClickFn={clicked}
+            // onClickFn={clicked}
+            // showImageBg={showImageBg}
             tileWidth={tileWidth}
+            boardWidth={boardWidth}
+            bgImage={bgImage}
           />
         </thead>
       </table>

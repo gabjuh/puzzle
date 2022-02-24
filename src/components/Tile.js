@@ -1,11 +1,16 @@
 import React, { useRef } from "react";
 
-
 export default Tile = props => {
 
   const tileRef = useRef()
 
-  const {number, tileWidth} = props
+  const {
+    number, 
+    tileWidth, 
+    bgImage, 
+    bgSize, 
+    bgPosition
+  } = props
 
   return (
     <td
@@ -16,8 +21,9 @@ export default Tile = props => {
         minWidth: tileWidth,
         width: tileWidth,
         height: tileWidth,
-
-        // backgroundImage: `url(${bgImage})`
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: bgSize,
+        backgroundPosition: bgPosition,
       }}
     >
       {number}
