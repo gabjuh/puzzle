@@ -20,7 +20,12 @@ export const isUndefined = (coords, size) => {
 
 export const objToStr = obj => JSON.stringify(obj)
 
-export const isGameOver = (origMatrix, refMatrix) => origMatrix === refMatrix
+export const isGameOver = (origMatrix, refMatrix) => {
+  console.log(origMatrix, refMatrix)
+  return origMatrix === refMatrix
+}
+
+
 
 export const setTileNrsMatrix = (size) => {
   const matrix = Array.from(new Array(size).fill(0).keys()).map((y, j) => 
@@ -78,5 +83,6 @@ export const getEmptyFieldCoordsFromMatrix = (matrix) => {
       if (val === '') coords = [x, y]
     })
   })
+  console.log(coords)
   return coords
 }

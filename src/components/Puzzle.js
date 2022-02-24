@@ -72,24 +72,24 @@ export default Puzzle = () => {
     return random
   }
 
-  const shuffleTiles = () => {
-    [...Array(1)].forEach(() => {
+  // const shuffleTiles = () => {
+  //   [...Array(1)].forEach(() => {
 
-      const [x, y] = getOtherRandomTile() 
-      const value = matrix[x][y]
-      setPrevShuffledTileValue(value)
+  //     const [x, y] = getOtherRandomTile() 
+  //     const value = matrix[x][y]
+  //     setPrevShuffledTileValue(value)
 
-      clicked(
-        value,
-        x, y, 
-        clickables, 
-        matrix, 
-        emptyFieldCoords, 
-        setMatrix, 
-        setEmptyFieldCoords 
-      )
-    }) 
-  }
+  //     clicked(
+  //       value,
+  //       x, y, 
+  //       clickables, 
+  //       matrix, 
+  //       emptyFieldCoords, 
+  //       setMatrix, 
+  //       setEmptyFieldCoords 
+  //     )
+  //   }) 
+  // }
 
   return (
     <> 
@@ -110,9 +110,9 @@ export default Puzzle = () => {
       <Button 
         text={'Start Game'}
         fn={() => {
-          shuffleTiles()
-          // setMatrix(getMixedMatrix(size))
-          setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(matrix))
+          let newMatrix = getMixedMatrix(size)
+          setMatrix(newMatrix)
+          setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(newMatrix))
           refreshClickables()
           setIsGameStarted(true)
           setInfo('')
@@ -131,7 +131,17 @@ export default Puzzle = () => {
       <Select 
         options={levels}
         defaultValue={size}
-        fn={setSize}
+        fn={newSize => {
+          newSize = parseInt(newSize)
+          let newMatrix = setTileNrsMatrix(newSize)
+          setSize(newSize)
+          setMatrix(newMatrix) 
+          setEmptyFieldCoords(DEFAULT_EMPTY_FIELD_COORDS)
+          refreshClickables()
+          setIsGameStarted(false)
+          setMatrixCopy(newMatrix)
+          setInfo('')
+        }}
       />
       <h2>{info}</h2>
     </>
