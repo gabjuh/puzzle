@@ -16,21 +16,17 @@ export default Puzzle = () => {
   const tileWidth = boardWidth / size
 
   const DEFAULT_EMPTY_FIELD_COORDS = [size - 1, size - 1]
-
-  // ?
+ 
   const [emptyFieldCoords, setEmptyFieldCoords] = useState(DEFAULT_EMPTY_FIELD_COORDS)
-
-  // ?
+ 
   const [clickables, setClickables] = useState([])
-
-  // ?
+ 
   const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
 
   useEffect(() => {
     setMatrix(setTileNrsMatrix(size))
   }, [size])
-  
-  // ?
+   
   const [matrixCopy, setMatrixCopy] = useState(matrix)
 
   const [info, setInfo] = useState('')
@@ -71,25 +67,6 @@ export default Puzzle = () => {
     if (prevShuffledTileValue === randomValue) return getOtherRandomTile()
     return random
   }
-
-  // const shuffleTiles = () => {
-  //   [...Array(1)].forEach(() => {
-
-  //     const [x, y] = getOtherRandomTile() 
-  //     const value = matrix[x][y]
-  //     setPrevShuffledTileValue(value)
-
-  //     clicked(
-  //       value,
-  //       x, y, 
-  //       clickables, 
-  //       matrix, 
-  //       emptyFieldCoords, 
-  //       setMatrix, 
-  //       setEmptyFieldCoords 
-  //     )
-  //   }) 
-  // }
 
   return (
     <> 
