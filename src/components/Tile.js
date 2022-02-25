@@ -15,15 +15,16 @@ export default Tile = props => {
   
   const showNumbersIfTrue = () => showNumbers ? 1 : 0
 
+  const tileHeight = tileWidth * 0.8
+
   return (
     <td
       ref={tileRef}
       key={number}
       onClick={props.clicked}
       style={{
-        minWidth: tileWidth,
         width: tileWidth,
-        height: tileWidth,
+        height: tileHeight,
         backgroundImage: `url(${bgImage})`,
         backgroundSize: bgSize,
         backgroundPosition: bgPos,

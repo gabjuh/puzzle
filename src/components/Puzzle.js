@@ -67,7 +67,7 @@ export default Puzzle = () => {
   useEffect (() => {
     refreshClickables()
     if (!isGameStarted) return
-    if (isGameOver(objToStr(matrix), objToStr(matrixCopy))) setInfo(GAME_OVER_TEXT)
+    if (isGameOver(objToStr(matrix), objToStr(matrixCopy))) setInfo(infoTexts.end)
   }, [matrix])
 
   const [prevShuffledTileValue, setPrevShuffledTileValue] = useState(0)

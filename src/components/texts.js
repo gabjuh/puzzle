@@ -4,7 +4,7 @@ export const infoTexts = {
   welcome: '😍 Welcome! 😍',
   start: 'Good Luck! 🧐',
   reset: '😵 Reset 😬',
-  end: 'Congratulation! 🤩'
+  end: '👏 Congratulations! 🤩'
 }
 
 export const buttonTexts = {

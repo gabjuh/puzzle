@@ -1,7 +1,9 @@
 body {
+  margin: 0;
+  padding: 0;
   background-color:darkslategrey;
   color: #fff;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 h1 {
@@ -23,6 +25,7 @@ td {
   vertical-align: middle;
   border: none;
   background-color: rgba(114, 136, 136, .4) ;
+  background-repeat: no-repeat;
 }
 
 button, select {
@@ -33,11 +36,10 @@ button, select {
   padding: 0 1.5rem;
   background-color: #728888; 
   border: none;  
-  text-align: left;
+  font-weight: 800;
 }
 
 button:hover,
-/* td:hover, */
 select:hover {
   color: rgba(255, 255, 255, 1);  
   background-color: rgba(114, 136, 136, .7) ;
