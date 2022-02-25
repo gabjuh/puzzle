@@ -3,10 +3,11 @@ import Board from './Board'
 import Button from './Button'
 import Select from './Select'
 import Checkbox from './Checkbox'
-import levels from './levels'
+// import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix, 
   isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix, setBgPosInArray } from "./helpers";
 import { BOARDWIDTH, DEFAULT_SIZE, GAME_OVER_TEXT } from './constants'
+import { GAME_TITLE, infoTexts, buttonTexts, levelsTexts } from './texts'
 import bgImage from '../../src/data/red-squirrel.jpg'
 
 export default Puzzle = () => {
@@ -39,7 +40,7 @@ export default Puzzle = () => {
    
   const [matrixCopy, setMatrixCopy] = useState(matrix)
 
-  const [info, setInfo] = useState('')
+  const [info, setInfo] = useState(infoTexts.welcome)
 
   const [isGameStarted, setIsGameStarted] = useState(false)
 
@@ -80,6 +81,7 @@ export default Puzzle = () => {
 
   return (
     <> 
+      <h1>{GAME_TITLE}</h1>
       <table>
         <thead>
           <Board 
@@ -98,28 +100,28 @@ export default Puzzle = () => {
         </thead>
       </table>
       <Button 
-        text={'Start Game'}
+        text={buttonTexts.start}
         fn={() => {
           let newMatrix = getMixedMatrix(size)
           setMatrix(newMatrix)
           setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(newMatrix))
           refreshClickables()
           setIsGameStarted(true)
-          setInfo('Good Luck! 🧐')
+          setInfo(infoTexts.start)
         }} 
       />
       <Button 
-        text={'Reset'}
+        text={buttonTexts.reset}
         fn={() => {
           setMatrix(setTileNrsMatrix(size)) 
           setEmptyFieldCoords(DEFAULT_EMPTY_FIELD_COORDS)
           refreshClickables()
           setIsGameStarted(false)
-          setInfo('Board Reset 😵😬')
+          setInfo(infoTexts.reset)
         }}
       />
       <Select 
-        options={levels}
+        options={levelsTexts}
         defaultValue={size}
         fn={newSize => {
           newSize = parseInt(newSize)
@@ -131,13 +133,13 @@ export default Puzzle = () => {
           setIsGameStarted(false)
           setMatrixCopy(newMatrix)
           setInfo(() => {
-            const level = levels.filter(x => x.value === newSize)
+            const level = levelsTexts.filter(x => x.value === newSize)
             return level[0].label, level[0].emoji
           })
         }}
       />
       <Checkbox 
-        label={'Show numbers'}
+        label={buttonTexts.showNr}
         showNumbers={showNumbers}
         handleChange={toggleNumbers}
       />
