@@ -1,52 +1,39 @@
 import React, { useState, useEffect } from 'react'
+
+// Components
 import Board from './Board'
 import Button from './Button'
 import Select from './Select'
 import Checkbox from './Checkbox'
-// import levels from './levels'
-import { clicked, isUndefined, setTileNrsMatrix, 
-  isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix, setBgPosInArray } from "./helpers";
-import { BOARDWIDTH, DEFAULT_SIZE, GAME_OVER_TEXT } from './constants'
-import { GAME_TITLE, infoTexts, buttonTexts, levelsTexts } from './texts'
+
+// Helper functions
+import { isUndefined, setTileNrsMatrix, isGameOver, 
+  objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix, 
+  setBgPosInArray } from "./helpers";
+
+// Constans
+import { BOARDWIDTH, DEFAULT_SIZE } from './constants'
+import { GAME_TITLE, INFO_TEXTS, BUTTON_TEXTS, LEVELS_TEXTS } from './texts'
+
+// Image(s)
 import bgImage from '../../src/data/red-squirrel.jpg'
 
 export default Puzzle = () => {
 
-  const [size, setSize] = useState(DEFAULT_SIZE)
-
-  const [boardWidth, setBoardWidth] = useState(BOARDWIDTH)
-
-  const tileWidth = boardWidth / size
-
-  const DEFAULT_EMPTY_FIELD_COORDS = [size - 1, size - 1]
- 
-  const [emptyFieldCoords, setEmptyFieldCoords] = useState(DEFAULT_EMPTY_FIELD_COORDS)
- 
-  const [clickables, setClickables] = useState([])
- 
-  const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
-
+  // Numbers
   const [showNumbers, setShowNumbers] = useState(true)
+  const toggleNumbers = () => setShowNumbers(!showNumbers)
 
-  const toggleNumbers = () => {
-    setShowNumbers(!showNumbers)
-  }
+  // Sizing board and tiles
+  const [size, setSize] = useState(DEFAULT_SIZE)
+  const tileWidth = BOARDWIDTH / size
+  const DEFAULT_EMPTY_FIELD_COORDS = [size - 1, size - 1]
 
-  const backgroundPositions = setBgPosInArray(matrix, tileWidth)
-
-  useEffect(() => {
-    setMatrix(setTileNrsMatrix(size))
-  }, [size])
-   
-  const [matrixCopy, setMatrixCopy] = useState(matrix)
-
-  const [info, setInfo] = useState(infoTexts.welcome)
-
-  const [isGameStarted, setIsGameStarted] = useState(false)
-
+  // Empty field and clickable tiles
+  const [emptyFieldCoords, setEmptyFieldCoords] = useState(DEFAULT_EMPTY_FIELD_COORDS)
+  const [clickables, setClickables] = useState([])
   const refreshClickables = () => {
     let clickablesArray = []
-    
     const [x, y] = emptyFieldCoords
 
     const above = [x - 1, y]
@@ -60,24 +47,31 @@ export default Puzzle = () => {
       isUndefined(left, size), 
       isUndefined(right, size)
     )
-
     setClickables(clickablesArray.filter(e => e))
   }
+ 
+  // Matrix
+  const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
+  const [matrixCopy, setMatrixCopy] = useState(matrix)
+
+  useEffect(() => {
+    setMatrix(setTileNrsMatrix(size))
+  }, [size])
+
+  // Background positioning
+  const backgroundPositions = setBgPosInArray(matrix, tileWidth)
+
+  // Info texts
+  const [info, setInfo] = useState(INFO_TEXTS.welcome)
+
+  // Game current state
+  const [isGameStarted, setIsGameStarted] = useState(false)
 
   useEffect (() => {
     refreshClickables()
     if (!isGameStarted) return
-    if (isGameOver(objToStr(matrix), objToStr(matrixCopy))) setInfo(infoTexts.end)
+    if (isGameOver(objToStr(matrix), objToStr(matrixCopy))) setInfo(INFO_TEXTS.end)
   }, [matrix])
-
-  const [prevShuffledTileValue, setPrevShuffledTileValue] = useState(0)
-
-  const getOtherRandomTile = () => {
-    const random = clickables[Math.floor(Math.random() * clickables.length)]
-    const randomValue = matrix[random[0]][random[1]]
-    if (prevShuffledTileValue === randomValue) return getOtherRandomTile()
-    return random
-  }
 
   return (
     <> 
@@ -92,7 +86,7 @@ export default Puzzle = () => {
             setMatrix={setMatrix}
             setEmptyFieldCoords={setEmptyFieldCoords}
             tileWidth={tileWidth}
-            boardWidth={boardWidth}
+            boardWidth={BOARDWIDTH}
             bgImage={bgImage}
             bgPos={backgroundPositions}
             showNumbers={showNumbers}
@@ -100,28 +94,28 @@ export default Puzzle = () => {
         </thead>
       </table>
       <Button 
-        text={buttonTexts.start}
+        text={BUTTON_TEXTS.start}
         fn={() => {
           let newMatrix = getMixedMatrix(size)
           setMatrix(newMatrix)
           setEmptyFieldCoords(getEmptyFieldCoordsFromMatrix(newMatrix))
           refreshClickables()
           setIsGameStarted(true)
-          setInfo(infoTexts.start)
+          setInfo(INFO_TEXTS.start)
         }} 
       />
       <Button 
-        text={buttonTexts.reset}
+        text={BUTTON_TEXTS.reset}
         fn={() => {
           setMatrix(setTileNrsMatrix(size)) 
           setEmptyFieldCoords(DEFAULT_EMPTY_FIELD_COORDS)
           refreshClickables()
           setIsGameStarted(false)
-          setInfo(infoTexts.reset)
+          setInfo(INFO_TEXTS.reset)
         }}
       />
       <Select 
-        options={levelsTexts}
+        options={LEVELS_TEXTS}
         defaultValue={size}
         fn={newSize => {
           newSize = parseInt(newSize)
@@ -133,13 +127,13 @@ export default Puzzle = () => {
           setIsGameStarted(false)
           setMatrixCopy(newMatrix)
           setInfo(() => {
-            const level = levelsTexts.filter(x => x.value === newSize)
+            const level = LEVELS_TEXTS.filter(x => x.value === newSize)
             return level[0].label, level[0].emoji
           })
         }}
       />
       <Checkbox 
-        label={buttonTexts.showNr}
+        label={BUTTON_TEXTS.showNr}
         showNumbers={showNumbers}
         handleChange={toggleNumbers}
       />

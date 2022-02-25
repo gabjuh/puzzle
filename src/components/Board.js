@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Row from './Row'
 import Tile from './Tile'
 import { clicked } from "./helpers";
@@ -19,10 +19,11 @@ export default Board = props => {
     showNumbers
   } = props
 
-  // Tricky, because the value was originally an 
-  // empty string, was converted to number but 
-  // without value. After the decrementation we 
-  // have a value to compare with.
+  // In order to skip the background image for the empty field,
+  // we must look for it. But it is tricky, because the value 
+  // was originally an empty string, was converted to number but 
+  // without a real value. 
+  // After the decrementation by 1 we have a value to compare with.
   const isLastPiece = val => val - 1 === -1 ? 'none' : bgImage
 
   return (

@@ -1,27 +1,5 @@
-export const clicked = (val, i, j, clickables, matrix, 
-  emptyFieldCoords, setMatrix, setEmptyFieldCoords) => {
-
-  clickables.forEach(coords => {
-    const [x, y] = coords
-    if (val === matrix[x][y]) {
-      const copy = [...matrix]
-      copy[i][j] = ''
-      copy[emptyFieldCoords[0]][emptyFieldCoords[1]] = val
-      setMatrix(copy)
-      setEmptyFieldCoords([i, j])
-    }
-  })
-}
-
-export const isUndefined = (coords, size) => {
-  const [x, y] = coords
-  if (x >= 0 && x < size && y >= 0 && y < size) return coords
-}
-
-export const objToStr = obj => JSON.stringify(obj)
-
-export const isGameOver = (origMatrix, refMatrix) => origMatrix === refMatrix
-
+// Create a matrix in given size, filled with growing numbers, 
+// and the last field ist an empty string ''
 export const setTileNrsMatrix = (size) => {
   const matrix = Array.from(new Array(size).fill(0).keys()).map((y, j) => 
     Array.from(new Array(size).fill(0).keys()).map((x, i) => {
@@ -32,8 +10,11 @@ export const setTileNrsMatrix = (size) => {
   return matrix
 }
 
+// Get random number between min and max (both inkl.)
 const getRandomNr = (min, max) => Math.floor(Math.random() * (max - min) + min)
 
+// Create a new matrix and shuffle the tiles in 2x2 blocks in random times,
+// and across the board on random places, btw. 200 and 500 times.
 export const getMixedMatrix = (size) => {
   let matrix = setTileNrsMatrix(size);
 
@@ -44,11 +25,12 @@ export const getMixedMatrix = (size) => {
     ];
   
     [...Array(getRandomNr(4, 1))].forEach(() => {
-  
-      // Id-s of the mixing direction
-      // 1  →  2
-      // ↑     ↓
-      // 4  ←  3
+      
+      // Id-s of the mixing direction:
+      //           1  →  2
+      //           ↑     ↓
+      //           4  ←  3
+      // This idea is crutial in order to keep the party solveable.
   
       let one = matrix[coord[0]][coord[1]]
       let two = matrix[coord[0]][coord[1] + 1]
@@ -66,6 +48,23 @@ export const getMixedMatrix = (size) => {
   return matrix
 }
 
+// "Moves" the clicked tile - it will actually replaced with the empty field.
+export const clicked = (val, i, j, clickables, matrix, 
+  emptyFieldCoords, setMatrix, setEmptyFieldCoords) => {
+
+  clickables.forEach(coords => {
+    const [x, y] = coords
+    if (val === matrix[x][y]) {
+      const copy = [...matrix]
+      copy[i][j] = ''
+      copy[emptyFieldCoords[0]][emptyFieldCoords[1]] = val
+      setMatrix(copy)
+      setEmptyFieldCoords([i, j])
+    }
+  })
+}
+
+// Filters the coords of the empty field (after mixing)
 export const getEmptyFieldCoordsFromMatrix = (matrix) => {
   let coords = []
   matrix.forEach((row, x) => {
@@ -76,6 +75,8 @@ export const getEmptyFieldCoordsFromMatrix = (matrix) => {
   return coords
 }
 
+// In order to set the bg image to every tile correctly, it saves
+// every each positions in an array, except the empty one of course
 export const setBgPosInArray = (matrix, tileWidth) => {  
   let positions = []
   let coords = [0, 0]
@@ -88,3 +89,12 @@ export const setBgPosInArray = (matrix, tileWidth) => {
   })
   return positions.slice(0, -1)
 }
+
+export const isUndefined = (coords, size) => {
+  const [x, y] = coords
+  if (x >= 0 && x < size && y >= 0 && y < size) return coords
+}
+
+export const objToStr = obj => JSON.stringify(obj)
+
+export const isGameOver = (origMatrix, refMatrix) => origMatrix === refMatrix
