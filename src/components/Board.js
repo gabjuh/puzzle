@@ -15,7 +15,8 @@ export default Board = props => {
     tileWidth,
     boardWidth,
     bgImage,
-    bgPos
+    bgPos,
+    showNumbers
   } = props
 
   // Tricky, because the value was originally an 
@@ -44,8 +45,7 @@ export default Board = props => {
               bgImage={isLastPiece(val)}
               bgSize={`${boardWidth}px`}
               bgPos={bgPos[val - 1]}
-              // test={val - 1}
-              // lastPiece={isLastPiece(i, j)}
+              showNumbers={showNumbers}
             />
           )
         })}

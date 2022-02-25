@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Board from './Board'
 import Button from './Button'
 import Select from './Select'
+import Checkbox from './Checkbox'
 import levels from './levels'
 import { clicked, isUndefined, setTileNrsMatrix, 
   isGameOver, objToStr, getMixedMatrix, getEmptyFieldCoordsFromMatrix, setBgPosInArray } from "./helpers";
@@ -25,6 +26,10 @@ export default Puzzle = () => {
   const [matrix, setMatrix] = useState(setTileNrsMatrix(size))
 
   const [showNumbers, setShowNumbers] = useState(true)
+
+  const toggleNumbers = () => {
+    setShowNumbers(!showNumbers)
+  }
 
   const backgroundPositions = setBgPosInArray(matrix, tileWidth)
 
@@ -84,12 +89,11 @@ export default Puzzle = () => {
             emptyFieldCoords={emptyFieldCoords}
             setMatrix={setMatrix}
             setEmptyFieldCoords={setEmptyFieldCoords}
-            // onClickFn={clicked}
-            // showImageBg={showImageBg}
             tileWidth={tileWidth}
             boardWidth={boardWidth}
             bgImage={bgImage}
             bgPos={backgroundPositions}
+            showNumbers={showNumbers}
           />
         </thead>
       </table>
@@ -131,6 +135,11 @@ export default Puzzle = () => {
             return level[0].label, level[0].emoji
           })
         }}
+      />
+      <Checkbox 
+        label={'Show numbers'}
+        showNumbers={showNumbers}
+        handleChange={toggleNumbers}
       />
       <h2>{info}</h2>
     </>

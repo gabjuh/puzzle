@@ -10,11 +10,10 @@ export default Tile = props => {
     bgImage, 
     bgSize, 
     bgPos,
-    // lastPiece, test
+    showNumbers,
   } = props
-
-  // const setNoneIfLastPiece = (cssProp) => lastPiece ? 'none' : cssProp  
-
+  
+  const showNumbersIfTrue = () => showNumbers ? 1 : 0
 
   return (
     <td
@@ -30,7 +29,11 @@ export default Tile = props => {
         backgroundPosition: bgPos,
       }}
     >
-      {number}
+      <span
+        style={{
+          opacity: showNumbersIfTrue()
+        }}
+      >{number}</span>
     </td>
   )
 }

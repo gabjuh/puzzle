@@ -12,7 +12,7 @@ table {
   margin: 0 auto;
   width: 400px;
   height: 400px;
-  /* background-color:cadetblue; */
+  border-collapse: collapse;
 }
 
 td {
@@ -48,6 +48,13 @@ button, h2, select {
   color: rgba(255, 255, 255, .8);  
   background-color: rgba(114, 136, 136, .5) ;
   font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+label {
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 h2 {

@@ -87,6 +87,4 @@ export const setBgPosInArray = (matrix, tileWidth) => {
     })
   })
   return positions.slice(0, -1)
-  // console.log(positions)
-  return positions
 }
