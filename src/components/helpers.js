@@ -18,7 +18,7 @@ const getRandomNr = (min, max) => Math.floor(Math.random() * (max - min) + min)
 export const getMixedMatrix = (size) => {
   let matrix = setTileNrsMatrix(size);
 
-  [...Array(getRandomNr(200, 500))].forEach(() => {
+  [...Array(getRandomNr(3000, 3500))].forEach(() => {
     const coord = [
       getRandomNr(size - 1, 0), 
       getRandomNr(size - 1, 0)
