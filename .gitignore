@@ -4,3 +4,5 @@ dist
 
 puzzle-workspace.code-workspace
 react_puzzle_esa.zip
+
+package-lock.json
