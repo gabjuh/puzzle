@@ -28,7 +28,7 @@ td {
   background-repeat: no-repeat;
 }
 
-button, select {
+.button, select {
   display: block;
   margin: 1rem auto;
   height: 2.4rem;
@@ -39,13 +39,13 @@ button, select {
   font-weight: 800;
 }
 
-button:hover,
+..button:hover,
 select:hover {
   color: rgba(255, 255, 255, 1);  
   background-color: rgba(114, 136, 136, .7) ;
 }
 
-button, h2, select {
+.button, h2, select {
   border-radius: 5rem;
   color: rgba(255, 255, 255, .8);  
   background-color: rgba(114, 136, 136, .5) ;
@@ -65,6 +65,31 @@ h2 {
   padding: 1.5rem;
   max-width: 400px;
   height: 2.5rem;
-  color: rgba(255, 255, 255, 1);  
-  
+  color: rgba(255, 255, 255, 1);
 }
+
+.imageButtonsBox {
+  display: block;
+  max-width: 400px;
+  margin: 1rem auto;
+}
+
+.imageButton {
+  display: block;
+  /* text-align: center!important; */
+  margin: 1rem .5rem;
+  height: 4rem;
+  width: 4rem;
+  border: none;
+  background-size: contain;
+  float: left;
+  cursor: pointer;
+
+}
+
+.imageButtonsBox::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+

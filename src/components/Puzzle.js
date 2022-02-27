@@ -5,6 +5,7 @@ import Board from './Board'
 import Button from './Button'
 import Select from './Select'
 import Checkbox from './Checkbox'
+import ImageButton from './ImageButton'
 
 // Helper functions
 import { isUndefined, setTileNrsMatrix, isGameOver, 
@@ -16,12 +17,16 @@ import { BOARDWIDTH, DEFAULT_SIZE } from './constants'
 import { GAME_TITLE, INFO_TEXTS, BUTTON_TEXTS, LEVELS_TEXTS } from './texts'
 
 // Image(s)
-import bgImage from '../../src/data/red-squirrel.jpg'
+import bgImage1 from '../../src/data/red-squirrel.jpg'
+import bgImage2 from '../../src/data/nyc2.jpg'
+import bgImage3 from '../../src/data/guitar.jpg'
+import bgImage4 from '../../src/data/rally.jpg'
+import bgImage5 from '../../src/data/holland.jpg'
 
 export default Puzzle = () => {
 
   // Numbers
-  const [showNumbers, setShowNumbers] = useState(true)
+  const [showNumbers, setShowNumbers] = useState(false)
   const toggleNumbers = () => setShowNumbers(!showNumbers)
 
   // Sizing board and tiles
@@ -72,6 +77,11 @@ export default Puzzle = () => {
     if (!isGameStarted) return
     if (isGameOver(objToStr(matrix), objToStr(matrixCopy))) setInfo(INFO_TEXTS.end)
   }, [matrix])
+
+  // Background images
+  const [bgImage, setBgImage] = useState(bgImage3)
+
+
 
   return (
     <> 
@@ -132,6 +142,28 @@ export default Puzzle = () => {
           })
         }}
       />
+      <div className="imageButtonsBox">
+        <ImageButton 
+          bgImage={bgImage1}
+          fn={() => setBgImage(bgImage1)}
+        />
+        <ImageButton 
+          bgImage={bgImage2}
+          fn={() => setBgImage(bgImage2)}
+        />
+        <ImageButton 
+          bgImage={bgImage3}
+          fn={() => setBgImage(bgImage3)}
+        />
+        <ImageButton 
+          bgImage={bgImage4}
+          fn={() => setBgImage(bgImage4)}
+        />
+        <ImageButton 
+          bgImage={bgImage5}
+          fn={() => setBgImage(bgImage5)}
+        />
+      </div>
       <Checkbox 
         label={BUTTON_TEXTS.showNr}
         showNumbers={showNumbers}
