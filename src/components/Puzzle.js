@@ -175,7 +175,7 @@ export default Puzzle = () => {
           <a href="https://github.com/gabjuh/puzzle" target="_blank"> github
           </a>
         </p>
-        <p className="version">Version: 1.0.2</p>
+        <p className="version">Version: 1.0.3</p>
       </footer>
     </>
   )
