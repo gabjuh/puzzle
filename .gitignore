@@ -5,3 +5,15 @@ puzzle-workspace.code-workspace
 react_puzzle_esa.zip
 
 package-lock.json
+
+dist/guitar.1164f06e.jpg
+dist/holland.b78b7ea2.jpg
+dist/nyc2.29b310b6.jpg
+dist/rally.13265084.jpg
+dist/red-squirrel.65309c07.jpg
+
+src/data/guitar.1164f06e.jpg
+src/data/holland.b78b7ea2.jpg
+src/data/nyc2.29b310b6.jpg
+src/data/rally.13265084.jpg
+src/data/red-squirrel.65309c07.jpg
