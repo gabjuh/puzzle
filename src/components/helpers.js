@@ -18,7 +18,7 @@ const getRandomNr = (min, max) => Math.floor(Math.random() * (max - min) + min)
 export const getMixedMatrix = (size) => {
   let matrix = setTileNrsMatrix(size);
 
-  [...Array(getRandomNr(200, 500))].forEach(() => {
+  [...Array(getRandomNr(3000, 3500))].forEach(() => {
     const coord = [
       getRandomNr(size - 1, 0), 
       getRandomNr(size - 1, 0)
@@ -38,6 +38,11 @@ export const getMixedMatrix = (size) => {
       let four = matrix[coord[0] + 1][coord[1]]
       
       let puffer = one
+
+      // Not the best solution, but it prevents, that the tiles are 
+      // shuffled without the empty field. So without it the party 
+      // wont be nessecarely solvable.
+      if (one && two && three && four != '') return
   
       matrix[coord[0]][coord[1]]          = two
       matrix[coord[0]][coord[1] + 1]      = three

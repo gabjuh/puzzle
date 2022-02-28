@@ -168,8 +168,15 @@ export default Puzzle = () => {
         label={BUTTON_TEXTS.showNr}
         showNumbers={showNumbers}
         handleChange={toggleNumbers}
-      />
+        />
       <h2>{info}</h2>
+      <footer>
+        <p className={'copyright'}>Gabor Juhasz © 2022 - 
+          <a href="https://github.com/gabjuh/puzzle" target="_blank"> github
+          </a>
+        </p>
+        <p className="version">Version: 1.0.3</p>
+      </footer>
     </>
   )
 }

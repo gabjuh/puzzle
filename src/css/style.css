@@ -39,7 +39,7 @@ td {
   font-weight: 800;
 }
 
-..button:hover,
+.button:hover,
 select:hover {
   color: rgba(255, 255, 255, 1);  
   background-color: rgba(114, 136, 136, .7) ;
@@ -93,3 +93,23 @@ h2 {
   display: table;
 }
 
+footer {
+  display: block;
+  margin: 1rem 0;
+}
+
+.copyright,
+.version {
+  text-align: center;
+  margin: 0;
+  font-size: .8rem;
+}
+
+.copyright a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.copyright a:hover {
+  color: #aaa;
+}
