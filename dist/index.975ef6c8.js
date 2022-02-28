@@ -23025,6 +23025,41 @@ exports.default = Puzzle = _s(()=>{
                 fileName: "src/components/Puzzle.js",
                 lineNumber: 172,
                 columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("footer", {
+                children: [
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                        className: 'copyright',
+                        children: [
+                            "Gabor Juhasz \xa9 2022 -",
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("a", {
+                                href: "https://github.com/gabjuh/puzzle",
+                                target: "_blank",
+                                children: " github"
+                            }, void 0, false, {
+                                fileName: "src/components/Puzzle.js",
+                                lineNumber: 175,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Puzzle.js",
+                        lineNumber: 174,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                        className: "version",
+                        children: "Version: 1.0.3"
+                    }, void 0, false, {
+                        fileName: "src/components/Puzzle.js",
+                        lineNumber: 178,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Puzzle.js",
+                lineNumber: 173,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true));
@@ -23358,7 +23393,7 @@ const getRandomNr = (min, max)=>Math.floor(Math.random() * (max - min) + min)
 const getMixedMatrix = (size)=>{
     let matrix = setTileNrsMatrix(size);
     [
-        ...Array(getRandomNr(200, 500))
+        ...Array(getRandomNr(3000, 3500))
     ].forEach(()=>{
         const coord = [
             getRandomNr(size - 1, 0),
@@ -23377,6 +23412,10 @@ const getMixedMatrix = (size)=>{
             let three = matrix[coord[0] + 1][coord[1] + 1];
             let four = matrix[coord[0] + 1][coord[1]];
             let puffer = one;
+            // Not the best solution, but it prevents, that the tiles are 
+            // shuffled without the empty field. So without it the party 
+            // wont be nessecarely solvable.
+            if (one && two && three && four != '') return;
             matrix[coord[0]][coord[1]] = two;
             matrix[coord[0]][coord[1] + 1] = three;
             matrix[coord[0] + 1][coord[1] + 1] = four;
